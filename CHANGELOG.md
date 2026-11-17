@@ -5,9 +5,17 @@
 書式は Keep a Changelog を参考にしています。
 
 ## [Unreleaesed]
+
+## [0.3.0] -2026-11-17
+
 ### Added
 - indexに趣味の項目を追加
+- About Meページ追加
+- 自己PRやストレス解消法などの自己紹介情報を追加
+
+## Changed
 - CSSで背景などの色を変えた
+- トップページ(index.html)にAbout Meページへのリンクを追加
 ## [0.2.0] -2026-11-17
 
 ### Chsnged
