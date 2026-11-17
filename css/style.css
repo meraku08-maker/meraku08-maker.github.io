@@ -431,3 +431,113 @@ html.dark {
         transform: none;
     }
 }
+
+/* ==========================================
+   夜空デザイン：ゴールド文字カラー
+   ========================================== */
+
+/* 基本文字 */
+body {
+    color: #ffe9a8;
+}
+
+/* メインタイトル */
+h1 {
+    color: #fff4c2;
+}
+
+/* 見出し */
+h2 {
+    color: #ffdf80;
+    border-left-color: #facc15;
+    text-shadow: 0 0 12px rgba(250, 204, 21, 0.25);
+}
+
+/* 本文 */
+p {
+    color: #ffedbd;
+}
+
+/* 作品カード */
+.portfolio-card {
+    color: #ffe9a8;
+}
+
+/* 作品タイトル */
+.portfolio-content h3 {
+    color: #ffdf80;
+}
+
+/* 作品説明 */
+.portfolio-grid .portfolio-description {
+    color: #e9d9a5;
+}
+
+/* リンク */
+a,
+.portfolio-link {
+    color: #facc15;
+}
+
+a:hover {
+    color: #fff1a8;
+    text-shadow: 0 0 12px rgba(250, 204, 21, 0.65);
+}
+
+/* 使用技術タグ */
+.portfolio-tags span {
+    color: #ffe9a8;
+    background: #493d20;
+    border-color: rgba(250, 204, 21, 0.3);
+}
+
+/* PROJECTラベル */
+.portfolio-card::before {
+    color: #eabf55;
+}
+
+/* ボタン */
+.theme-toggle {
+    color: #ffe9a8;
+    border-color: rgba(250, 204, 21, 0.4);
+}
+
+.theme-toggle:hover {
+    color: #fff4c2;
+    background-color: #493d20;
+}
+
+/* ダークモード */
+.dark body {
+    color: #ffe9a8;
+}
+
+.dark h2 {
+    color: #ffdf80;
+    border-left-color: #facc15;
+}
+
+.dark p {
+    color: #ffedbd;
+}
+
+.dark .portfolio-content h3 {
+    color: #ffdf80;
+}
+
+.dark .portfolio-grid .portfolio-description {
+    color: #e9d9a5;
+}
+
+.dark .portfolio-tags span {
+    background: #493d20;
+    color: #ffe9a8;
+}
+
+.dark a {
+    color: #facc15;
+}
+
+.dark .theme-toggle {
+    color: #ffe9a8;
+}
