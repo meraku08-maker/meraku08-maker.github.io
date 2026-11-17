@@ -1,5 +1,438 @@
 
 /* ==========================================
+   夜空をイメージしたポートフォリオデザイン
+   ========================================== */
+
+/* 余白や枠線を含めてサイズを計算 */
+* {
+    box-sizing: border-box;
+}
+
+/* ページ全体の背景 */
+html {
+    min-height: 100%;
+    background:
+        radial-gradient(ellipse at 15% 10%, rgba(59, 130, 246, 0.16), transparent 40%),
+        radial-gradient(ellipse at 85% 35%, rgba(124, 58, 237, 0.12), transparent 42%),
+        linear-gradient(180deg, #080f20 0%, #101b35 50%, #080f20 100%);
+    background-attachment: fixed;
+}
+
+/* コンテンツ */
+body {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+    font-family: "Segoe UI", "Hiragino Kaku Gothic ProN",
+        "Yu Gothic", Meiryo, sans-serif;
+    color: #dbeafe;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+/* サイトタイトル */
+h1 {
+    margin: 0 0 44px;
+    padding: 40px 36px;
+    border: 1px solid rgba(147, 197, 253, 0.25);
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(147, 197, 253, 0.3), transparent 42%),
+        linear-gradient(120deg, #101d3b, #1e3a70, #312e81);
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(96, 165, 250, 0.12);
+    color: #ffffff;
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+}
+
+/* PORTFOLIOラベル */
+h1::before {
+    content: "PORTFOLIO";
+    display: block;
+    margin-bottom: 12px;
+    color: #93c5fd;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+
+/* 見出し */
+h2 {
+    margin: 36px 0 16px;
+    padding-left: 14px;
+    border-left: 4px solid #60a5fa;
+    color: #bfdbfe;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    text-shadow: 0 0 12px rgba(96, 165, 250, 0.25);
+}
+
+/* 本文カード */
+p {
+    margin: 0;
+    padding: 24px 28px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 14px;
+    background: rgba(21, 35, 65, 0.85);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    color: #dbeafe;
+    line-height: 2;
+}
+
+/* 作品紹介カード */
+.portfolio-card {
+    padding: 28px;
+    border-top: 3px solid #60a5fa;
+    color: #bfdbfe;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+/* PROJECTラベル */
+.portfolio-card::before {
+    content: "PROJECT";
+    display: block;
+    margin-bottom: 8px;
+    color: #93c5fd;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+}
+
+/* リンク */
+a {
+    color: #93c5fd;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+a:hover {
+    color: #c4b5fd;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+    text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 5px;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 600px) {
+    body {
+        padding: 28px 16px 48px;
+    }
+
+    h1 {
+        margin-bottom: 32px;
+        padding: 28px 20px;
+        border-radius: 16px;
+    }
+
+    h2 {
+        margin-top: 28px;
+        font-size: 1.1rem;
+    }
+
+    p,
+    .portfolio-card {
+        padding: 20px;
+    }
+}
+
+/* ==========================================
+   JavaScript と組み合わせた演出
+   ========================================== */
+
+/* テーマ切り替えボタン */
+.theme-toggle {
+    display: block;
+    margin: 0 0 18px auto;
+    padding: 10px 18px;
+    border: 1px solid rgba(147, 197, 253, 0.35);
+    border-radius: 999px;
+    background: #152443;
+    color: #bfdbfe;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.theme-toggle:hover {
+    background-color: #243b68;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(96, 165, 250, 0.2);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+/* 画面内に入ると表示 */
+.js-enabled .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js-enabled .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* カードの浮き上がり */
+.portfolio-card {
+    transition: box-shadow 0.25s ease, transform 0.25s ease,
+        opacity 0.7s ease;
+}
+
+.portfolio-card.is-visible:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(96, 165, 250, 0.18);
+}
+
+/* ダークモード */
+html.dark {
+    background:
+        radial-gradient(ellipse at 15% 10%, rgba(59, 130, 246, 0.13), transparent 40%),
+        linear-gradient(180deg, #030712, #080f20 60%, #030712);
+}
+
+.dark body {
+    color: #dbeafe;
+}
+
+.dark h2 {
+    color: #bfdbfe;
+    border-left-color: #818cf8;
+}
+
+.dark p {
+    background-color: #101b30;
+    color: #e2e8f0;
+    border-color: #334155;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.35);
+}
+
+.dark .portfolio-card {
+    border-top-color: #818cf8;
+}
+
+.dark .portfolio-card::before {
+    color: #a5b4fc;
+}
+
+.dark .theme-toggle {
+    color: #e2e8f0;
+    background-color: #111c33;
+    border-color: #475569;
+}
+
+.dark .theme-toggle:hover {
+    background-color: #263653;
+}
+
+.dark a {
+    color: #93c5fd;
+}
+
+/* アニメーション軽減設定 */
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .theme-toggle,
+    .portfolio-card {
+        transition: none;
+    }
+
+    .theme-toggle:hover,
+    .portfolio-card.is-visible:hover {
+        transform: none;
+    }
+}
+
+/* ==========================================
+   ポートフォリオ一覧
+   ========================================== */
+
+/* カードを横並びにする */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* カード全体 */
+.portfolio-grid .portfolio-card {
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(145deg, #172847, #101b32);
+    border: 1px solid rgba(147, 197, 253, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    color: #dbeafe;
+    font-size: 1rem;
+    font-weight: normal;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.7s ease;
+}
+
+/* PROJECT表示を無効化 */
+.portfolio-grid .portfolio-card::before {
+    content: none;
+}
+
+/* ホバー演出 */
+.portfolio-grid .portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(96, 165, 250, 0.18);
+}
+
+/* カード上部の画像領域 */
+.portfolio-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(191, 219, 254, 0.25), transparent 35%),
+        linear-gradient(135deg, #101d3b, #1e40af, #312e81);
+    color: #dbeafe;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 12px rgba(147, 197, 253, 0.6);
+}
+
+/* 制作予定カード */
+.portfolio-image-next {
+    background:
+        radial-gradient(circle at 70% 30%, rgba(191, 219, 254, 0.2), transparent 35%),
+        linear-gradient(135deg, #1e293b, #334155, #1e3a5f);
+}
+
+/* カード本文 */
+.portfolio-content {
+    padding: 24px;
+}
+
+.portfolio-content h3 {
+    margin: 0 0 12px;
+    color: #bfdbfe;
+    font-size: 1.2rem;
+}
+
+/* 作品説明 */
+.portfolio-grid .portfolio-description {
+    margin: 0 0 18px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #a9bad3;
+    font-size: 0.9rem;
+    font-weight: normal;
+    line-height: 1.8;
+}
+
+/* 使用技術タグ */
+.portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.portfolio-tags span {
+    padding: 4px 12px;
+    border: 1px solid rgba(147, 197, 253, 0.2);
+    border-radius: 6px;
+    background: #1e3154;
+    color: #bfdbfe;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* GitHubリンク */
+.portfolio-link {
+    display: inline-block;
+    color: #93c5fd;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* ==========================================
+   ダークモード対応
+   ========================================== */
+
+.dark .portfolio-grid .portfolio-card {
+    background: linear-gradient(145deg, #0c172b, #101b30);
+    border-color: rgba(129, 140, 248, 0.25);
+    color: #e2e8f0;
+}
+
+.dark .portfolio-content h3 {
+    color: #c4b5fd;
+}
+
+.dark .portfolio-grid .portfolio-description {
+    background: transparent;
+    color: #cbd5e1;
+    box-shadow: none;
+}
+
+.dark .portfolio-tags span {
+    background: #172554;
+    border-color: rgba(129, 140, 248, 0.25);
+    color: #c7d2fe;
+}
+
+/* ==========================================
+   レスポンシブ対応
+   ========================================== */
+
+@media (max-width: 600px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-image {
+        height: 130px;
+    }
+
+    .portfolio-content {
+        padding: 20px;
+    }
+}
+
+/* アニメーション軽減設定 */
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-grid .portfolio-card {
+        transition: none;
+    }
+
+    .portfolio-grid .portfolio-card:hover {
+        transform: none;
+    }
+}
+
+/* ==========================================
    夜空デザイン：ゴールド文字カラー
    ========================================== */
 
