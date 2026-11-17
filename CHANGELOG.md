@@ -4,8 +4,10 @@
 
 書式は Keep a Changelog を参考にしています。
 
-##[Unreleaesed]
-
+## [Unreleaesed]
+### Added
+- indexに趣味の項目を追加
+- CSSで背景などの色を変えた
 ## [0.2.0] -2026-11-17
 
 ### Chsnged
